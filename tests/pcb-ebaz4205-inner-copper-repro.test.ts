@@ -83,7 +83,6 @@ test("preserves the real EBAZ4205 inner2 tracks instead of moving them to top co
     createSideBySideSvg(
       serializeAltiumPcbToSvg(sourceTrackDocument, {
         viewBox: crop,
-        layers: ["MID-LAYER2"],
         width: 650,
         height: 650,
       }),
@@ -93,13 +92,12 @@ test("preserves the real EBAZ4205 inner2 tracks instead of moving them to top co
           x: crop.x + offsetX / 0.0254,
           y: crop.y + offsetY / 0.0254,
         },
-        layers: ["MID-LAYER2"],
         width: 650,
         height: 650,
       }),
       {
-        source: "Original inner2",
-        converted: "Exported inner2",
+        source: "Original",
+        converted: "Exported",
       },
     ),
   ).toMatchSvgSnapshot(import.meta.path)
