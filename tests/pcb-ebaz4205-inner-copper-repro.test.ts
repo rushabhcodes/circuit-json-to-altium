@@ -49,8 +49,6 @@ test("preserves the real EBAZ4205 inner2 tracks instead of moving them to top co
       record instanceof AltiumTrackRecord,
   )
   expect(tracks).toHaveLength(20)
-  expect(tracks.every((track) => track.layer === "MID-LAYER2")).toBe(true)
-  expect(generated.board?.layerStack.entries).toHaveLength(4)
   const board = elements.find((element) => element.type === "pcb_board")!
   const outline = board.outline as { x: number; y: number }[]
   const offsetX = 25.4 - Math.min(...outline.map((point) => point.x))
@@ -101,8 +99,10 @@ test("preserves the real EBAZ4205 inner2 tracks instead of moving them to top co
       }),
       {
         source: "EBAZ4205 original inner2",
-        converted: "Exported inner2 (20 tracks retained)",
+        converted: "Current export inner2 (tracks incorrectly moved to TOP)",
       },
     ),
   ).toMatchSvgSnapshot(import.meta.path)
+  expect(tracks.every((track) => track.layer === "MID-LAYER2")).toBe(true)
+  expect(generated.board?.layerStack.entries).toHaveLength(4)
 })
