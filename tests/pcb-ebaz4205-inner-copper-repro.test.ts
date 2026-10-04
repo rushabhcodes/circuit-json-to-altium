@@ -98,8 +98,8 @@ test("preserves the real EBAZ4205 inner2 tracks instead of moving them to top co
         height: 650,
       }),
       {
-        source: "EBAZ4205 original inner2",
-        converted: "Current export inner2 (tracks incorrectly moved to TOP)",
+        source: "Original inner2",
+        converted: "Exported inner2",
       },
     ),
   ).toMatchSvgSnapshot(import.meta.path)
