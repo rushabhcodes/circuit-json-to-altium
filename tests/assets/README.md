@@ -217,7 +217,7 @@ radius differs from native Altium. Regenerate with
 all 20 inner-layer tracks emitted by the production `altium-to-circuit-json`
 importer for the real four-layer EBAZ4205 board. It deliberately excludes
 components, outer copper, pours and annotations to isolate the layer-mapping
-bug. All 20 tracks belong to `inner2`; before this fix they exported to `TOP`.
+bug. All 20 tracks belong to `inner2`; the current exporter moves them to `TOP`.
 
 - Source: `xjtuecho/EBAZ4205@05cdb45035a06fc5b4db16babf0ac6f4ee4497be`, `HW/ebaz4205/altium/ebit_ad.PcbDoc`
 - License: MIT
@@ -227,4 +227,6 @@ bug. All 20 tracks belong to `inner2`; before this fix they exported to `TOP`.
 
 The regression compares native exported layers, endpoints and widths against
 the pinned original Altium document and snapshots its inner copper alongside
-the corrected export. The reference is already included in the CI downloader.
+the expected layer-preserving export. The snapshot records the desired output;
+the regression currently fails before reaching its snapshot assertion. This PR
+contains no exporter fix. The reference is already included in the CI downloader.

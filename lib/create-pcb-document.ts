@@ -2,7 +2,6 @@ import { convertCircuitPcbCcwRotationDegreesToAltium } from "./convert-circuit-p
 import { createCircuitToAltiumPcbPointTransform } from "./create-circuit-to-altium-pcb-point-transform"
 import { createPcbComponentBodyRecords } from "./create-pcb-component-body-records"
 import { createPcbCopperPourRecords } from "./create-pcb-copper-pour-records"
-import { createPcbCopperStackFields } from "./create-pcb-copper-stack-fields"
 import { createPcbCourtyardRecords } from "./create-pcb-courtyard-records"
 import { createPcbCutoutRecords } from "./create-pcb-cutout-records"
 import { createPcbDocumentationRecords } from "./create-pcb-documentation-records"
@@ -24,7 +23,6 @@ import {
   pointsEqual,
   sanitizeField,
 } from "./format"
-import { getAltiumPcbCopperLayer } from "./get-altium-pcb-copper-layer"
 import { getBoardOutline } from "./get-board-outline"
 import type {
   CircuitElement,
@@ -113,7 +111,6 @@ export const createPcbDocument = (circuitJson: CircuitElement[]): string => {
       "|RECORD=Board",
       "KIND=Protel_Advanced_PCB",
       "VERSION=5.00",
-      ...createPcbCopperStackFields(circuitJson, board),
       ...boardFields,
     ].join("|"),
   ]
@@ -398,12 +395,13 @@ export const createPcbDocument = (circuitJson: CircuitElement[]): string => {
         y: asNumber(circuitRouteEnd.y),
       })
       if (pointsEqual(altiumStartPoint, altiumEndPoint)) continue
-      const routeLayer = getAltiumPcbCopperLayer(
+      const routeLayer =
         asString(
           circuitRouteEnd.layer,
-          asString(circuitRouteStart.layer, "top"),
-        ),
-      )
+          asString(circuitRouteStart.layer),
+        ).toLowerCase() === "bottom"
+          ? "BOTTOM"
+          : "TOP"
       lines.push(
         [
           "|RECORD=Track",
