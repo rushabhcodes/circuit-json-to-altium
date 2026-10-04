@@ -210,3 +210,21 @@ The TI file has 62 green junctions with no exposed blue automatic dots in the
 native Viewer. These comparisons use the pinned Altiumts renderer, whose dot
 radius differs from native Altium. Regenerate with
 `bun scripts/generate-junction-review-files.ts`.
+
+## EBAZ4205 inner-copper track regression
+
+`ebaz4205-copper-tracks.circuit.json` contains the unchanged board element and
+all 20 inner-layer tracks emitted by the production `altium-to-circuit-json`
+importer for the real four-layer EBAZ4205 board. It deliberately excludes
+components, outer copper, pours and annotations to isolate the layer-mapping
+bug. All 20 tracks belong to `inner2`; before this fix they exported to `TOP`.
+
+- Source: `xjtuecho/EBAZ4205@05cdb45035a06fc5b4db16babf0ac6f4ee4497be`, `HW/ebaz4205/altium/ebit_ad.PcbDoc`
+- License: MIT
+- Original SHA-256: `1dbeba2537bdf83e77bc9c5a7a6f2f7bf1104193f3dc2547d020dbd8018b4e62`
+- Importer revision: `9a09fe70dc024b141df07cb045ef1fb8e13fc96b`
+- Regenerate after downloading references: `bun scripts/extract-ebaz4205-inner-copper-fixture.ts /path/to/altium-to-circuit-json/lib/index.ts`
+
+The regression compares native exported layers, endpoints and widths against
+the pinned original Altium document and snapshots its inner copper alongside
+the corrected export. The reference is already included in the CI downloader.

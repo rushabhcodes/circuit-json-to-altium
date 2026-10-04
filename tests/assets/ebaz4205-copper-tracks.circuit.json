@@ -1,0 +1,478 @@
+[
+  {
+    "type": "pcb_board",
+    "pcb_board_id": "pcb_board_altium",
+    "center": {
+      "x": 138.57280007,
+      "y": 122.15229950999998
+    },
+    "width": 100.55400006,
+    "height": 97.27900025999999,
+    "shape": "polygon",
+    "outline": [
+      {
+        "x": 88.29580003999999,
+        "y": 73.51279937999999
+      },
+      {
+        "x": 188.84980009999998,
+        "y": 73.51279937999999
+      },
+      {
+        "x": 188.84980009999998,
+        "y": 170.79179964
+      },
+      {
+        "x": 88.29580003999999,
+        "y": 170.79179964
+      },
+      {
+        "x": 88.29580003999999,
+        "y": 73.51279937999999
+      }
+    ],
+    "thickness": 1.6,
+    "num_layers": 4,
+    "material": "fr4"
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_altium_10560",
+    "source_trace_id": "source_trace_altium_pcb_365",
+    "should_round_corners": true,
+    "route": [
+      {
+        "route_type": "wire",
+        "x": 137.27279886,
+        "y": 112.13980112,
+        "width": 0.127,
+        "layer": "inner2"
+      },
+      {
+        "route_type": "wire",
+        "x": 137.27279886,
+        "y": 112.16703246,
+        "width": 0.127,
+        "layer": "inner2"
+      }
+    ]
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_altium_10561",
+    "source_trace_id": "source_trace_altium_pcb_365",
+    "should_round_corners": true,
+    "route": [
+      {
+        "route_type": "wire",
+        "x": 137.27279886,
+        "y": 112.16703246,
+        "width": 0.127,
+        "layer": "inner2"
+      },
+      {
+        "route_type": "wire",
+        "x": 137.6348784,
+        "y": 112.52911199999998,
+        "width": 0.127,
+        "layer": "inner2"
+      }
+    ]
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_altium_10562",
+    "source_trace_id": "source_trace_altium_pcb_365",
+    "should_round_corners": true,
+    "route": [
+      {
+        "route_type": "wire",
+        "x": 137.6348784,
+        "y": 112.52911199999998,
+        "width": 0.127,
+        "layer": "inner2"
+      },
+      {
+        "route_type": "wire",
+        "x": 142.65859199999997,
+        "y": 112.52911199999998,
+        "width": 0.127,
+        "layer": "inner2"
+      }
+    ]
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_altium_10563",
+    "source_trace_id": "source_trace_altium_pcb_365",
+    "should_round_corners": true,
+    "route": [
+      {
+        "route_type": "wire",
+        "x": 142.65859199999997,
+        "y": 112.52911199999998,
+        "width": 0.127,
+        "layer": "inner2"
+      },
+      {
+        "route_type": "wire",
+        "x": 143.69790411999998,
+        "y": 111.48979987999998,
+        "width": 0.127,
+        "layer": "inner2"
+      }
+    ]
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_altium_10564",
+    "source_trace_id": "source_trace_altium_pcb_365",
+    "should_round_corners": true,
+    "route": [
+      {
+        "route_type": "wire",
+        "x": 143.69790411999998,
+        "y": 111.48979987999998,
+        "width": 0.127,
+        "layer": "inner2"
+      },
+      {
+        "route_type": "wire",
+        "x": 145.37280044,
+        "y": 111.48979987999998,
+        "width": 0.127,
+        "layer": "inner2"
+      }
+    ]
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_altium_10565",
+    "source_trace_id": "source_trace_altium_pcb_13",
+    "should_round_corners": true,
+    "route": [
+      {
+        "route_type": "wire",
+        "x": 135.62279962,
+        "y": 112.1647998,
+        "width": 0.127,
+        "layer": "inner2"
+      },
+      {
+        "route_type": "wire",
+        "x": 135.6459822,
+        "y": 112.1647998,
+        "width": 0.127,
+        "layer": "inner2"
+      }
+    ]
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_altium_10566",
+    "source_trace_id": "source_trace_altium_pcb_13",
+    "should_round_corners": true,
+    "route": [
+      {
+        "route_type": "wire",
+        "x": 135.6459822,
+        "y": 112.1647998,
+        "width": 0.127,
+        "layer": "inner2"
+      },
+      {
+        "route_type": "wire",
+        "x": 135.9603072,
+        "y": 112.4791248,
+        "width": 0.127,
+        "layer": "inner2"
+      }
+    ]
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_altium_10567",
+    "source_trace_id": "source_trace_altium_pcb_13",
+    "should_round_corners": true,
+    "route": [
+      {
+        "route_type": "wire",
+        "x": 135.9603072,
+        "y": 112.4791248,
+        "width": 0.127,
+        "layer": "inner2"
+      },
+      {
+        "route_type": "wire",
+        "x": 136.61014079999998,
+        "y": 112.4791248,
+        "width": 0.127,
+        "layer": "inner2"
+      }
+    ]
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_altium_10568",
+    "source_trace_id": "source_trace_altium_pcb_13",
+    "should_round_corners": true,
+    "route": [
+      {
+        "route_type": "wire",
+        "x": 136.61014079999998,
+        "y": 112.4791248,
+        "width": 0.127,
+        "layer": "inner2"
+      },
+      {
+        "route_type": "wire",
+        "x": 137.1849936,
+        "y": 113.05397760000001,
+        "width": 0.127,
+        "layer": "inner2"
+      }
+    ]
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_altium_10569",
+    "source_trace_id": "source_trace_altium_pcb_13",
+    "should_round_corners": true,
+    "route": [
+      {
+        "route_type": "wire",
+        "x": 137.1849936,
+        "y": 113.05397760000001,
+        "width": 0.127,
+        "layer": "inner2"
+      },
+      {
+        "route_type": "wire",
+        "x": 143.7583104,
+        "y": 113.05397760000001,
+        "width": 0.127,
+        "layer": "inner2"
+      }
+    ]
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_altium_10570",
+    "source_trace_id": "source_trace_altium_pcb_13",
+    "should_round_corners": true,
+    "route": [
+      {
+        "route_type": "wire",
+        "x": 143.7583104,
+        "y": 113.05397760000001,
+        "width": 0.127,
+        "layer": "inner2"
+      },
+      {
+        "route_type": "wire",
+        "x": 144.3331632,
+        "y": 112.4791248,
+        "width": 0.127,
+        "layer": "inner2"
+      }
+    ]
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_altium_10571",
+    "source_trace_id": "source_trace_altium_pcb_13",
+    "should_round_corners": true,
+    "route": [
+      {
+        "route_type": "wire",
+        "x": 144.3331632,
+        "y": 112.4791248,
+        "width": 0.127,
+        "layer": "inner2"
+      },
+      {
+        "route_type": "wire",
+        "x": 145.8827664,
+        "y": 112.4791248,
+        "width": 0.127,
+        "layer": "inner2"
+      }
+    ]
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_altium_10572",
+    "source_trace_id": "source_trace_altium_pcb_13",
+    "should_round_corners": true,
+    "route": [
+      {
+        "route_type": "wire",
+        "x": 145.8827664,
+        "y": 112.4791248,
+        "width": 0.127,
+        "layer": "inner2"
+      },
+      {
+        "route_type": "wire",
+        "x": 146.5575936,
+        "y": 111.80429759999998,
+        "width": 0.127,
+        "layer": "inner2"
+      }
+    ]
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_altium_10573",
+    "source_trace_id": "source_trace_altium_pcb_13",
+    "should_round_corners": true,
+    "route": [
+      {
+        "route_type": "wire",
+        "x": 146.5575936,
+        "y": 111.4793808,
+        "width": 0.127,
+        "layer": "inner2"
+      },
+      {
+        "route_type": "wire",
+        "x": 146.5575936,
+        "y": 111.80429759999998,
+        "width": 0.127,
+        "layer": "inner2"
+      }
+    ]
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_altium_10574",
+    "source_trace_id": "source_trace_altium_pcb_4",
+    "should_round_corners": true,
+    "route": [
+      {
+        "route_type": "wire",
+        "x": 136.44779924,
+        "y": 112.08980122,
+        "width": 0.127,
+        "layer": "inner2"
+      },
+      {
+        "route_type": "wire",
+        "x": 136.72068922,
+        "y": 112.08980122,
+        "width": 0.127,
+        "layer": "inner2"
+      }
+    ]
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_altium_10575",
+    "source_trace_id": "source_trace_altium_pcb_4",
+    "should_round_corners": true,
+    "route": [
+      {
+        "route_type": "wire",
+        "x": 136.72068922,
+        "y": 112.08980122,
+        "width": 0.127,
+        "layer": "inner2"
+      },
+      {
+        "route_type": "wire",
+        "x": 137.43492959999998,
+        "y": 112.8040416,
+        "width": 0.127,
+        "layer": "inner2"
+      }
+    ]
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_altium_10576",
+    "source_trace_id": "source_trace_altium_pcb_4",
+    "should_round_corners": true,
+    "route": [
+      {
+        "route_type": "wire",
+        "x": 137.43492959999998,
+        "y": 112.8040416,
+        "width": 0.127,
+        "layer": "inner2"
+      },
+      {
+        "route_type": "wire",
+        "x": 142.80855359999998,
+        "y": 112.8040416,
+        "width": 0.127,
+        "layer": "inner2"
+      }
+    ]
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_altium_10577",
+    "source_trace_id": "source_trace_altium_pcb_4",
+    "should_round_corners": true,
+    "route": [
+      {
+        "route_type": "wire",
+        "x": 142.80855359999998,
+        "y": 112.8040416,
+        "width": 0.127,
+        "layer": "inner2"
+      },
+      {
+        "route_type": "wire",
+        "x": 143.7083232,
+        "y": 111.904272,
+        "width": 0.127,
+        "layer": "inner2"
+      }
+    ]
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_altium_10578",
+    "source_trace_id": "source_trace_altium_pcb_4",
+    "should_round_corners": true,
+    "route": [
+      {
+        "route_type": "wire",
+        "x": 143.7083232,
+        "y": 111.904272,
+        "width": 0.127,
+        "layer": "inner2"
+      },
+      {
+        "route_type": "wire",
+        "x": 145.78332794,
+        "y": 111.904272,
+        "width": 0.127,
+        "layer": "inner2"
+      }
+    ]
+  },
+  {
+    "type": "pcb_trace",
+    "pcb_trace_id": "pcb_trace_altium_10579",
+    "source_trace_id": "source_trace_altium_pcb_4",
+    "should_round_corners": true,
+    "route": [
+      {
+        "route_type": "wire",
+        "x": 145.78332794,
+        "y": 111.904272,
+        "width": 0.127,
+        "layer": "inner2"
+      },
+      {
+        "route_type": "wire",
+        "x": 145.79780086,
+        "y": 111.88979908,
+        "width": 0.127,
+        "layer": "inner2"
+      }
+    ]
+  }
+]
