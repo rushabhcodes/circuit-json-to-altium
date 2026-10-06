@@ -7,6 +7,7 @@ import { createPcbCutoutRecords } from "./create-pcb-cutout-records"
 import { createPcbDocumentationRecords } from "./create-pcb-documentation-records"
 import { createPcbKeepoutRecords } from "./create-pcb-keepout-records"
 import { createPcbNetEntries, type PcbNetEntry } from "./create-pcb-net-entries"
+import { createPcbSilkscreenCircleRecords } from "./create-pcb-silkscreen-circle-records"
 import { createPcbSilkscreenGraphicRecords } from "./create-pcb-silkscreen-graphic-records"
 import { createPcbSilkscreenLineRecords } from "./create-pcb-silkscreen-line-records"
 import { createPcbSilkscreenTextRecord } from "./create-pcb-silkscreen-text-record"
@@ -23,6 +24,7 @@ import {
   pointsEqual,
   sanitizeField,
 } from "./format"
+import { getAltiumPcbTrackLayer } from "./get-altium-pcb-track-layer"
 import { getBoardOutline } from "./get-board-outline"
 import type {
   CircuitElement,
@@ -305,6 +307,12 @@ export const createPcbDocument = (circuitJson: CircuitElement[]): string => {
     const padCcwRotationDegrees = asNumber(
       hasIndependentPadRotation ? hole.rect_ccw_rotation : hole.ccw_rotation,
     )
+    // Altium slots extend along X and rotate relative to the copper pad.
+    const relativeHoleRotation = isSlotted
+      ? holeCcwRotationDegrees +
+        (holeHeight > holeWidth ? 90 : 0) -
+        padCcwRotationDegrees
+      : holeCcwRotationDegrees
     const isRoundedRectPad =
       hasIndependentPadRotation &&
       asPositiveNumber(hole.rect_border_radius, 0) >=
@@ -322,7 +330,7 @@ export const createPcbDocument = (circuitJson: CircuitElement[]): string => {
         `HOLESIZE=${formatMil(Math.min(holeWidth, holeHeight) * MILLIMETERS_TO_MILS)}`,
         `HOLEWIDTH=${formatMil(Math.max(holeWidth, holeHeight) * MILLIMETERS_TO_MILS)}`,
         `HOLESHAPE=${isSlotted ? "SLOT" : "ROUND"}`,
-        `HOLEROTATION=${formatNumber(convertCircuitPcbCcwRotationDegreesToAltium(holeCcwRotationDegrees))}`,
+        `HOLEROTATION=${formatNumber(convertCircuitPcbCcwRotationDegreesToAltium(relativeHoleRotation))}`,
         "PLATED=TRUE",
         "LOCKED=FALSE",
         `X=${formatMil(altiumCenter.x)}`,
@@ -346,6 +354,9 @@ export const createPcbDocument = (circuitJson: CircuitElement[]): string => {
     const holeWidth = asPositiveNumber(hole.hole_width, diameter)
     const holeHeight = asPositiveNumber(hole.hole_height, diameter)
     const isSlotted = Math.abs(holeWidth - holeHeight) > 1e-9
+    const padCcwRotationDegrees = asNumber(hole.ccw_rotation)
+    let relativeHoleRotation = padCcwRotationDegrees
+    if (isSlotted) relativeHoleRotation = holeHeight > holeWidth ? 90 : 0
     lines.push(
       [
         "|RECORD=Pad",
@@ -353,12 +364,12 @@ export const createPcbDocument = (circuitJson: CircuitElement[]): string => {
           ? []
           : [`COMPONENT=${altiumComponentIndex}`]),
         "LAYER=MULTILAYER",
-        `ROTATION=${formatNumber(convertCircuitPcbCcwRotationDegreesToAltium(asNumber(hole.ccw_rotation)))}`,
+        `ROTATION=${formatNumber(convertCircuitPcbCcwRotationDegreesToAltium(padCcwRotationDegrees))}`,
         `NAME=NPTH-${holeIndex + 1}`,
         `HOLESIZE=${formatMil(Math.min(holeWidth, holeHeight) * MILLIMETERS_TO_MILS)}`,
         `HOLEWIDTH=${formatMil(Math.max(holeWidth, holeHeight) * MILLIMETERS_TO_MILS)}`,
         `HOLESHAPE=${isSlotted ? "SLOT" : "ROUND"}`,
-        `HOLEROTATION=${formatNumber(convertCircuitPcbCcwRotationDegreesToAltium(asNumber(hole.ccw_rotation)))}`,
+        `HOLEROTATION=${formatNumber(convertCircuitPcbCcwRotationDegreesToAltium(relativeHoleRotation))}`,
         "PLATED=FALSE",
         "LOCKED=FALSE",
         `X=${formatMil(altiumCenter.x)}`,
@@ -398,13 +409,12 @@ export const createPcbDocument = (circuitJson: CircuitElement[]): string => {
         y: asNumber(circuitRouteEnd.y),
       })
       if (pointsEqual(altiumStartPoint, altiumEndPoint)) continue
-      const routeLayer =
+      const routeLayer = getAltiumPcbTrackLayer(
         asString(
           circuitRouteEnd.layer,
-          asString(circuitRouteStart.layer),
-        ).toLowerCase() === "bottom"
-          ? "BOTTOM"
-          : "TOP"
+          asString(circuitRouteStart.layer, "top"),
+        ),
+      )
       lines.push(
         [
           "|RECORD=Track",
@@ -500,6 +510,11 @@ export const createPcbDocument = (circuitJson: CircuitElement[]): string => {
   }
 
   lines.push(
+    ...createPcbSilkscreenCircleRecords({
+      circuitJson,
+      circuitToAltiumPcbPoint,
+      componentIndex,
+    }),
     ...createPcbSilkscreenGraphicRecords({
       circuitJson,
       circuitToAltiumPcbPoint,
