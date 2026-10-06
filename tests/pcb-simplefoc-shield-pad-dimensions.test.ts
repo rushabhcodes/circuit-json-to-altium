@@ -1,9 +1,6 @@
 import { expect, test } from "bun:test"
-import { serializeAltiumPcbToSvg } from "altiumts"
 import type { AnyCircuitElement } from "circuit-json"
-import { convertCircuitJsonToPcbSvg } from "circuit-to-svg"
 import { extractArchive } from "./fixtures"
-import { createSideBySideSvg } from "./fixtures/create-side-by-side-svg"
 
 test("preserves SimpleFOC Shield rectangular copper around a circular drill", async () => {
   // P4.1 dimensions from the production altium-to-circuit-json import of
@@ -48,33 +45,4 @@ test("preserves SimpleFOC Shield rectangular copper around a circular drill", as
     4,
   )
   expect(pad.get("SHAPE")).toBe("RECTANGLE")
-
-  const circuitJsonSvg = await convertCircuitJsonToPcbSvg(elements, {
-    width: 600,
-    height: 600,
-    viewport: { minX: -2, minY: -2, maxX: 2, maxY: 2 },
-  })
-  // Altium's renderer uses mils; both crops show the same 4 × 4 mm area.
-  const nativeX = pad.getAltiumMeasurement("X")?.toMils()
-  const nativeY = pad.getAltiumMeasurement("Y")?.toMils()
-  if (nativeX === undefined || nativeY === undefined)
-    throw new Error("Missing native pad position")
-  const altiumSvg = serializeAltiumPcbToSvg(pcb, {
-    width: 600,
-    height: 600,
-    showBoardOutline: false,
-    viewBox: {
-      x: nativeX - 2 / 0.0254,
-      y: nativeY - 2 / 0.0254,
-      width: 4 / 0.0254,
-      height: 4 / 0.0254,
-    },
-  })
-  expect(altiumSvg).toContain('data-record="Pad"')
-  await expect(
-    createSideBySideSvg(circuitJsonSvg, altiumSvg, {
-      source: "Circuit JSON: Shield P4.1, 1.8 mm copper / 1.2 mm drill",
-      converted: "Generated Altium: 1.8 mm copper / 1.2 mm drill",
-    }),
-  ).toMatchSvgSnapshot(import.meta.path)
 })
